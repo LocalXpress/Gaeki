@@ -1,0 +1,365 @@
+body {
+  margin: 0;
+  background: #e3e3e3;
+  font-family: 'Raleway', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+  #left_bar
+    {
+    float: left;
+    width: 50%;
+    padding-left:30px;
+    }
+  #right_bar
+    {
+    float: left;
+    width: 50%;
+    padding-right:30px;
+    }
+    #comments
+    {
+      width:100%;
+      min-height:256px;
+    }
+    #stat_block
+    {
+      width:100%;
+      min-height:50px;
+      text-align: left;
+    }
+    #comment_block
+    {
+      width:100%;
+      min-height:206px;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: left;
+    }
+    a
+    {
+      padding:25px;
+    }
+    a:hover
+    {
+      background-color:#f2f2f2;
+    }
+    input[type=text], select 
+    {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+.player {
+  border-top: 8px solid gold;
+  position: relative;
+  width:70%;
+  background: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  min-height: 100px;
+  margin: 16px auto;
+  overflow: hidden;
+  padding-bottom: 60px;
+
+  background: rgba(235,233,249,1);
+  background: -moz-linear-gradient(left, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(235,233,249,1)), color-stop(50%, rgba(216,208,239,1)), color-stop(51%, rgba(206,199,236,1)), color-stop(100%, rgba(193,191,234,1)));
+  background: -webkit-linear-gradient(left, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+  background: -o-linear-gradient(left, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+  background: -ms-linear-gradient(left, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+  background: linear-gradient(to right, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea', GradientType=1 );
+}
+.player .current-track {
+  text-align: center;
+  padding: 32px 0 16px 0;
+}
+.player .track-list {
+  position: absolute;
+  top: calc(100% - 60px);
+  padding: 16px;
+  background: #f3f3f3;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15);
+  overflow-y: visible;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.player .track-list.active {
+  top: 0;
+  overflow: auto;
+}
+.player .track-list.active .closer:before {
+  box-shadow: -9px -9px 0 0 #333, -6px -9px 0 0 transparent, 6px -6px 0 0 #333, 0px -9px 0 0 transparent, 3px -3px 0 0 #333, 6px -9px 0 0 transparent, 9px -9px 0 0 #333, 6px 6px 0 0 #333, -6px 0px 0 0 transparent, 3px 3px 0 0 #333, -3px 3px 0 0 #333, 6px 0px 0 0 transparent, -6px 6px 0 0 #333, -9px 9px 0 0 #333, -6px 9px 0 0 transparent, -3px -3px 0 0 #333, 0px 9px 0 0 transparent, -6px -6px 0 0 #333, 6px 9px 0 0 transparent, 9px 9px 0 0 #333;
+}
+.player .track-list .closer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.player .track-list .closer:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.player .track-list .closer:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0px);
+  height: 3px;
+  width: 3px;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #333;
+  border: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: -9px -6px 0 0 #333, -3px -6px 0 0 #333, 0px -6px 0 0 #333, 3px -6px 0 0 #333, 6px -6px 0 0 #333, 9px -6px 0 0 #333, -9px 0px 0 0 #333, -3px 0px 0 0 #333, 3px 0px 0 0 #333, 6px 0px 0 0 #333, 9px 0px 0 0 #333, -9px 6px 0 0 #333, -3px 6px 0 0 #333, 0px 6px 0 0 #333, 3px 6px 0 0 #333, 6px 6px 0 0 #333, 9px 6px 0 0 #333;
+}
+.player .track-list .track-list-title {
+  margin: 0 0 16px 0;
+}
+.player .track-list .track {
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 0 16px 0 48px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  height: 48px;
+  line-height: 48px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.player .track-list .track:not(:last-child) {
+  margin-bottom: 8px;
+}
+.player .track-list .track i {
+  color: #000;
+  line-height: 48px;
+  position: absolute;
+  left: 12px;
+  pointer-events: none;
+}
+.player .track-list .track span {
+  position: relative;
+  pointer-events: none;
+}
+.player .track-list .track:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.player .track-list .track.active, .player .track-list .track:active {
+  background: rgba(0, 0, 0, 0.025);
+  box-shadow: 0 3px 5px #00cc88;
+}
+.player h2, .player h3 {
+  font-weight: 400;
+}
+.player .track-meta {
+  padding: 0 0 32px 0;
+}
+.player .track-meta .track-artist {
+  margin: 0;
+  font-size: 16px;
+}
+.player .track-meta .track-name {
+  margin: 0;
+  font-size: 26px;
+}
+.player .controls {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 16px;
+}
+.player .controls > div {
+  display: inline-block;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.player .controls > div i {
+  font-size: 32px;
+  padding: 8px;
+  transition: color 0.3s;
+  pointer-events: none;
+}
+.player .controls > div:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.player .controls > div.active, .player .controls > div:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.player .controls > div.active i, .player .controls > div:active i {
+  color: #0c8;
+}
+.player .canvas,
+.player canvas {
+  position: relative;
+  margin: 0 auto;
+  height: 256px;
+  width: 256px;
+}
+.player .canvas {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.player .canvas .overlay {
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+.player .canvas .overlay:after, .player .canvas .overlay:before {
+  content: '';
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+.player .canvas .overlay:after {
+  border: 50px solid transparent;
+  border-left-color: rgba(0, 0, 0, 0.2);
+  border-left-width: 75px;
+  box-sizing: content-box;
+  height: 0;
+  -webkit-transform: translate(-25px, -50px);
+  transform: translate(-25px, -50px);
+  -webkit-transition: border-left-color 0.3s;
+  transition: border-left-color 0.3s;
+  width: 0;
+}
+.player .canvas .overlay:before {
+  border: 10px solid rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  height: 140px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 140px;
+}
+.player .canvas .overlay[playing='playing']:after, .player .canvas .overlay:hover:after {
+  border-left-color: rgba(0, 0, 0, 0.1);
+}
+.player .canvas .overlay[playing='playing']:before, .player .canvas .overlay:hover:before {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.player .canvas .overlay[playing='playing'] {
+  opacity: 0;
+}
+.player .canvas .overlay[playing='playing']:hover {
+  opacity: 1;
+}
+.player .canvas .overlay[playing='playing']:after {
+  border-right-color: rgba(0, 0, 0, 0.1);
+  border-width: 10px;
+  height: 80px;
+  width: 30px;
+}
+.player .canvas input[type=range] {
+  -webkit-appearance: none;
+  margin: 0;
+  opacity: 0;
+  padding: 10px 0;
+  position: absolute;
+  -webkit-transform-origin: 0 0 0;
+  transform-origin: 0 0 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+.player .canvas input[type=range]#volume {
+  background:transparent;
+  right: 0;
+  top: 0;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.player .canvas input[type=range]#buffer {
+  left: 0;
+  bottom: calc(100% + 10px);
+}
+.player .canvas input[type=range]:focus {
+  outline: none;
+}
+.player .canvas input[type=range]::-webkit-slider-runnable-track {
+  animation: 0.3s;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  cursor: pointer;
+  height: 10px;
+  width: 100%;
+}
+.player .canvas input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #999;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  border-radius: 100%;
+  cursor: pointer;
+  height: 16px;
+  margin-top: -3px;
+  width: 16px;
+}
+.player .canvas input[type=range]::-moz-range-track {
+  animation: 0.3s;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  cursor: pointer;
+  height: 10px;
+  width: 100%;
+}
+.player .canvas input[type=range]::-moz-range-thumb {
+  background: #999;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  border-radius: 100%;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+}
+.player .canvas input[type=range]:focus,
+.player .canvas .overlay:hover ~ input[type=range],
+.player .canvas input[type=range]:hover {
+  opacity: 1;
+}

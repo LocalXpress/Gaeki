@@ -1,0 +1,416 @@
+body {
+    margin: 0;
+    background: #e3e3e3;
+    font-family: 'Raleway', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+        
+$pixel: 3px;
+$colour: #333;
+.player {
+    position: relative;
+    width: 320px;
+    background: #fff;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    min-height: 100px;
+    margin: 16px auto;
+    overflow: hidden;
+    padding-bottom: 60px;
+    
+    .current-track {
+        text-align: center;
+        padding: 32px 0 16px 0;
+    }
+    
+    .track-list {
+        position: absolute;
+        top: calc(100% - 60px);
+        padding: 16px;
+        background: #f3f3f3;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 -2px 3px rgba(0,0,0,0.15);
+        overflow-y: visible;
+        transition: top 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        
+        &.active {
+            top: 0;
+            overflow: auto;
+            
+            .closer:before {
+                box-shadow: // Top row
+                            ($pixel * -3) ($pixel * -3) 0 0 $colour,
+                            ($pixel * -2) ($pixel * -3) 0 0 transparent,
+                            ($pixel * 2) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 0) ($pixel * -3) 0 0 transparent,
+                            ($pixel * 1) ($pixel * -1) 0 0 $colour,
+                            ($pixel * 2) ($pixel * -3) 0 0 transparent,
+                            ($pixel * 3) ($pixel * -3) 0 0 $colour,
+
+                            // Middle row
+                            ($pixel * 2) ($pixel * 2) 0 0 $colour,
+                            ($pixel * -2) ($pixel * 0) 0 0 transparent,
+                            ($pixel * 1) ($pixel * 1) 0 0 $colour,
+                            // ($pixel * 0) ($pixel * 0) 0 0 $colour,
+                            ($pixel * -1) ($pixel * 1) 0 0 $colour,
+                            ($pixel * 2) ($pixel * 0) 0 0 transparent,
+                            ($pixel * -2) ($pixel * 2) 0 0 $colour,
+
+                            // Bottom row
+                            ($pixel * -3) ($pixel * 3) 0 0 $colour,
+                            ($pixel * -2) ($pixel * 3) 0 0 transparent,
+                            ($pixel * -1) ($pixel * -1) 0 0 $colour,
+                            ($pixel * 0) ($pixel * 3) 0 0 transparent,
+                            ($pixel * -2) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 2) ($pixel * 3) 0 0 transparent,
+                            ($pixel * 3) ($pixel * 3) 0 0 $colour;
+            }
+        }
+        
+        .closer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            transition: background 0.3s;
+            
+            &:hover {
+                background: rgba(0,0,0,0.1);
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0px);
+                height: $pixel;
+                width: $pixel;
+                transition: box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                            width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1),
+                            height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+                background: $colour;
+                border: none;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: // Top row
+                            ($pixel * -3) ($pixel * -2) 0 0 $colour,
+                            // ($pixel * -2) ($pixel * -2) 0 0 $colour,
+                            ($pixel * -1) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 0) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 1) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 2) ($pixel * -2) 0 0 $colour,
+                            ($pixel * 3) ($pixel * -2) 0 0 $colour,
+
+                            // Middle row
+                            ($pixel * -3) ($pixel * 0) 0 0 $colour,
+                            // ($pixel * -2) ($pixel * 0) 0 0 $colour,
+                            ($pixel * -1) ($pixel * 0) 0 0 $colour,
+                            // ($pixel * 0) ($pixel * 0) 0 0 $colour,
+                            ($pixel * 1) ($pixel * 0) 0 0 $colour,
+                            ($pixel * 2) ($pixel * 0) 0 0 $colour,
+                            ($pixel * 3) ($pixel * 0) 0 0 $colour,
+
+                            // Bottom row
+                            ($pixel * -3) ($pixel * 2) 0 0 $colour,
+                            // ($pixel * -2) ($pixel * 2) 0 0 $colour,
+                            ($pixel * -1) ($pixel * 2) 0 0 $colour,
+                            ($pixel * 0) ($pixel * 2) 0 0 $colour,
+                            ($pixel * 1) ($pixel * 2) 0 0 $colour,
+                            ($pixel * 2) ($pixel * 2) 0 0 $colour,
+                            ($pixel * 3) ($pixel * 2) 0 0 $colour
+            }
+        }
+        
+        .track-list-title {
+            margin: 0 0 16px 0;
+        }
+        
+        .track {
+            position: relative;
+            float: left;
+            width: 100%;
+            padding: 0 16px 0 48px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+            background: #fff;
+            height: 48px;
+            line-height: 48px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+            
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+            
+            i {
+                color: #000;
+                line-height: 48px;
+                position: absolute;
+                left: 12px;
+                pointer-events: none;
+            }
+            
+            span {
+                position: relative;
+                pointer-events: none;
+            }
+            
+            &:hover {
+                background: rgba(0,0,0,0.05);
+            }
+            
+            &.active,
+            &:active {
+                background: rgba(0,0,0,0.025);
+                box-shadow: 0 3px 5px rgba(0, 204, 136, 1);
+            }
+        }
+    }
+    
+    h2, h3 {
+        font-weight: 400;
+    }
+    
+    .track-meta {
+        padding: 0 0 32px 0;
+        
+        .track-artist {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .track-name {
+            margin: 0;
+            font-size: 26px;
+        }
+    }
+    
+    .controls {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        padding-top: 16px;
+        
+        > div {
+            display: inline-block;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            
+            i {
+                font-size: 32px;
+                padding: 8px;
+                transition: color 0.3s;
+                pointer-events: none;
+            }
+            
+            &:hover {
+                background: rgba(0,0,0,0.2);
+            }
+            
+            &.active,
+            &:active {
+                background: rgba(0,0,0,0.1);
+            
+                i {
+                    color: #0c8;
+                }
+            }
+        }
+    }
+
+    .canvas,
+    canvas {
+        position: relative;
+        margin: 0 auto;
+        height: 256px;
+        width: 256px;
+    }
+
+    .canvas {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        
+        .overlay {
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            width: 100%;
+
+            &:after,
+            &:before {
+                content: '';
+                left: 50%;
+                position: absolute;
+                top: 50%;
+            }
+
+            &:after {
+                border: 50px solid transparent;
+                border-left-color: rgba(0, 0, 0, 0.2);
+                border-left-width: 75px;
+                box-sizing: content-box;
+                height: 0;
+                -webkit-transform: translate(-25px, -50px);
+                transform: translate(-25px, -50px);
+                -webkit-transition: border-left-color 0.3s;
+                transition: border-left-color 0.3s;
+                width: 0;
+            }
+
+            &:before {
+                border: 10px solid rgba(0, 0, 0, 0.2);
+                border-radius: 100%;
+                height: 140px;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+                width: 140px;
+            }
+
+            &[playing='playing']:after,
+            &:hover:after {
+                border-left-color: rgba(0, 0, 0, 0.1);
+            }
+
+            &[playing='playing']:before,
+            &:hover:before {
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+
+            &[playing='playing'] {
+                opacity: 0;
+            }
+
+            &[playing='playing']:hover {
+                opacity: 1;
+            }
+
+            &[playing='playing']:after {
+                border-right-color: rgba(0, 0, 0, 0.1);
+                border-width: 10px;
+                height: 80px;
+                width: 30px;
+            }
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 0;
+            opacity: 0;
+            padding: 10px 0;
+            position: absolute;
+            -webkit-transform-origin: 0 0 0;
+            transform-origin: 0 0 0;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            width: 100%;
+
+            &#volume {
+                right: 0;
+                top: 0;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+
+            &#buffer {
+                left: 0;
+                bottom: calc(100% + 10px);
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &::-webkit-slider-runnable-track {
+                animation: 0.3s;
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 1em;
+                cursor: pointer;
+                height: 10px;
+                width: 100%;
+            }
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                background: #999;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+                border-radius: 100%;
+                cursor: pointer;
+                height: 16px;
+                margin-top: -3px;
+                width: 16px;
+            }
+
+            &::-moz-range-track {
+                animation: 0.3s;
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 1em;
+                cursor: pointer;
+                height: 10px;
+                width: 100%;
+            }
+
+            &::-moz-range-thumb {
+                background: #999;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+                border-radius: 100%;
+                cursor: pointer;
+                height: 16px;
+                width: 16px;
+            }
+        }
+
+        input[type=range]:focus,
+        .overlay:hover ~ input[type=range],
+        input[type=range]:hover {
+            opacity: 1;
+        }
+    }
+}

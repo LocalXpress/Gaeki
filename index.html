@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+<meta charset="UTF-8">
+<title>Audio Player</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link href='https://fonts.googleapis.com/css?family=Raleway:300,400' rel='stylesheet subresource' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="description" content="This is an music player project suitable for only chrome and firefox.">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/index.js"></script>  
+</head>
+<body>
+ 
+  <div class="player">
+    <div class="current-track clearfix">
+        <div class="track-meta">
+            <h3 class="track-artist"></h3>
+            <h2 class="track-name"></h2>
+        </div>
+
+<div id="left_bar">        
+		
+  <div class="canvas clearfix">
+			<audio crossOrigin="anonymous" id="mp3" src=""></audio>
+      <input type="range" name="volume" id="volume" value="50">
+			<canvas id="canvas" width="256" height="256"></canvas>
+			<div class="overlay" id="play"></div>
+		</div>
+
+    <div class="controls">
+            <div class="shuffle" id="shuffle"><i class="material-icons">shuffle</i></div>
+            <div class="previous" id="previous"><i class="material-icons">skip_previous</i></div>
+            <div class="next" id="next"><i class="material-icons">skip_next</i></div>
+            <div class="repeat" id="repeat"><i class="material-icons">repeat</i></div>
+    </div>
+
+</div>
+
+
+    <div id="right_bar">
+      <div id="comments">
+          <div id="stat_block">
+            <a href="#"><i class="material-icons">thumb_up</i></a>
+            <a href="#"><i class="material-icons">remove_red_eye</i></a>
+            <a href="#"><i class="material-icons">refresh</i></a>
+            <a href="#"><i class="material-icons">share</i></a>
+            <a href="#"><i class="material-icons">more_vert</i></a>
+          </div>
+          <div id="comment_block">
+          <input type="text" id="fname" name="firstname" placeholder="Write a comment...">
+            <p><b><a href="">SomeOne: </b></a>Hey nice song!! Keep it up!</p>
+            <p><b><a href="">SomeOne: </b></a>Cool!! Waiting for more!</p>
+            <p><b><a href="">SomeOne: </b></a>It was awesome!</p>
+          </div>
+      </div>
+    </div>
+
+</div>
+
+
+    <div class="track-list clearfix" id="tracklist">
+        <h2 class="track-list-title">
+            <div class="closer" id="tracklist-control"></div>
+            From the same artist
+        </h2>
+    </div>
+</div>
+</body>
+</html>
